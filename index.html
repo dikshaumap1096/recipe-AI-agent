@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Agent</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background-color: #fdf6ee;
+      color: #1f2328;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      background-color: #c0392b;
+      color: #fff;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    header .logo {
+      font-size: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    /* ── Hero banner ── */
+    .hero {
+      background: linear-gradient(135deg, #e8f5e9 0%, #fff8e1 100%);
+      padding: 48px 32px;
+      text-align: center;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #c0392b;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #57606a;
+      max-width: 560px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+    }
+
+    .hero .chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .chip {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      color: #57606a;
+    }
+
+    /* ── Main layout ── */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── Chat container ── */
+    #root {
+      width: 100%;
+      max-width: 800px;
+      min-height: 520px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #57606a;
+      padding: 16px 24px;
+      border-top: 1px solid #e5e7eb;
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <span class="logo">🍽️</span>
+    <div>
+      <h1>Recipe Agent</h1>
+      <p>Powered by IBM watsonx Orchestrate</p>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Your Personal AI Chef</h2>
+    <p>Ask me anything — discover new recipes, get step-by-step cooking instructions, find ingredient substitutions, or plan your weekly meals.</p>
+    <div class="chips">
+      <span class="chip">🥗 Healthy meals</span>
+      <span class="chip">🍕 Quick dinners</span>
+      <span class="chip">🎂 Desserts</span>
+      <span class="chip">🥦 Vegetarian</span>
+      <span class="chip">🍜 World cuisine</span>
+    </div>
+  </section>
+
+  <!-- Chat widget mounts here -->
+  <main>
+    <div id="root"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Recipe Agent &mdash; Built with IBM watsonx Orchestrate
+  </footer>
+
+  <!-- watsonx Orchestrate chat embed -->
+  <script>
+    window.wxOConfiguration = {
+      orchestrationID: "407243033bd647f58230a01695d6236f_cc621338-862d-4eed-9c9b-a166ea134624",
+      hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
+      rootElementID: "root",
+      deploymentPlatform: "ibmcloud",
+      crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/407243033bd647f58230a01695d6236f:cc621338-862d-4eed-9c9b-a166ea134624::",
+      chatOptions: {
+        agentId: "5066f6d3-206d-49d2-877e-758fcf10f5ed"
+      }
+    };
+
+    setTimeout(function () {
+      const script = document.createElement('script');
+      script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+      script.addEventListener('load', function () {
+        wxoLoader.init();
+      });
+      document.head.appendChild(script);
+    }, 0);
+  </script>
+
+</body>
+</html>
